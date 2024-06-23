@@ -1,14 +1,15 @@
 CC=g++
 COPTION=-std=c++14 -O2
-COPENCV=-L/usr/local/include/opencv2/ -lopencv_videoio -lopencv_core -lopencv_imgcodecs
-CMQTT=-lpaho-mqttpp3 -lpaho-mqtt3as
+COPENCV=-L/usr/local/include/opencv2 -lopencv_videoio -lopencv_core -lopencv_imgcodecs -lopencv_highgui
+
+
 .PHONY: all
 
-all : send
+all: receive
 
-send : ./send.cpp
-	$(CC) $(COPTION) $^ -o $@ $(COPENCV) $(CMQTT)
+receive : receive.cpp
+	$(CC) $(COPTION) $^ -o $@ $(COPENCV)
 
 .PHONY: clean
 clean :
-	rm send
+	rm receive
